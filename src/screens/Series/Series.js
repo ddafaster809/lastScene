@@ -1,18 +1,15 @@
-import React, { useState } from 'react'
-import { View, Text, TextInput } from 'react-native';
-import { Icon } from 'react-native-elements';
+import React from 'react'
+import { View } from 'react-native';
 import Header from '../../components/UI/Header';
+import SearchInput from '../../components/UI/SearchInput';
 
 
 const Series = ({ navigation }) => {
-    const [text, onChangeText] = useState("Useless Text");
-    const [focus, setFocus] = useState(false)
-    
     return (
         <>
             <Header navigation={navigation} title="Series" />
             <View style={{ paddingHorizontal: 13 }}>
-                
+                <SearchInput />
             </View>
 
         </>

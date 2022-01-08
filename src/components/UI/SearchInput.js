@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TextInput } from 'react-native'
+import { Icon } from 'react-native-elements';
 import { useObjState } from '../../hooks';
 
+
 const SearchInput = () => {    
-    const [focus, setFocus] = useState(false);            
+    const [{inputValue, isFocused}, updateState] = useObjState({
+        inputValue: null, 
+        isFocused: false
+    });
+    const setIsFocused = isFocused => {
+        updateState({isFocused})
+    }
     return (
-        <View style={[styles.mainContainer, focus && focusedBorder ]}>
+        <View style={[styles.mainContainer, isFocused && styles.focusedBorder ]}>
             <TextInput
-                onFocus={()=>{setFocus(true)}}
-                onBlur={()=>{setFocus(false)}}
+                onFocus={()=>{setIsFocused(true)}}
+                onBlur={()=>{setIsFocused(false)}}
                 style={styles.textInput}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={value =>{
+                    updateState({inputValue: value})
+                }}
+                value={inputValue}
             />
             <View style={styles.iconContainer}>
             <Icon      
