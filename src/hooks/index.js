@@ -1,1 +1,2 @@
-export * from "./useObjState"
+export * from './useObjState';
+export * from './useFetch';
