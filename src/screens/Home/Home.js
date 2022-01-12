@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {Text,View} from 'react-native';
+import {Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import Actors from '../Actors/Actors';
 import Series from '../Series/Series';
+import Favorite from '../Series/Favorite/Favorite';
+
 import styles from './styles';
-const SimpleView = ()=>(<View><Text>hey</Text></View>);
 const Home = () => {
   const [index, setIndex] = useState(0);
   const routes = [
@@ -15,8 +17,8 @@ const Home = () => {
   ];
   const renderScene = SceneMap({
     series: Series,
-    actors: SimpleView,
-    favorite: SimpleView,
+    actors: Actors,
+    favorite: Favorite,
   });
   return (
     <SafeAreaView style={styles.safeAreaView}>

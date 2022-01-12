@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 import {Icon} from 'react-native-elements';
+import {isStrEmpty} from '../../util/helpers';
 
-const SearchInput = ({onValueChange, value, placeHolder}) => {
+const SearchInput = ({onValueChange, onDeleteText, value, placeHolder}) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View style={[styles.mainContainer, isFocused && styles.focusedBorder]}>
@@ -20,7 +21,18 @@ const SearchInput = ({onValueChange, value, placeHolder}) => {
         value={value}
       />
       <View style={styles.iconContainer}>
-        <Icon size={16} name="search" type="font-awesome-5" color="#707070" />
+        {isStrEmpty(value) ? (
+          <Icon size={16} name="search" type="font-awesome-5" color="#707070" />
+        ) : (
+          <Icon
+            solid
+            onPress={onDeleteText}
+            size={18}
+            name="times-circle"
+            type="font-awesome-5"
+            color="#707070"
+          />
+        )}
       </View>
     </View>
   );
@@ -28,6 +40,7 @@ const SearchInput = ({onValueChange, value, placeHolder}) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
+    zIndex: 3,
     borderRadius: 22,
     borderWidth: 1,
     backgroundColor: '#F5F5F5',
